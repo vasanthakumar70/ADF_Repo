@@ -1,0 +1,25 @@
+{
+	"name": "SchedulEvery2min",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "EmployeeData_Blob_CSV_SQL",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 2,
+				"startTime": "2024-12-17T21:45:00",
+				"endTime": "2024-12-18T21:56:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

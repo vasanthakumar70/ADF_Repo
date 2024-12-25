@@ -1,0 +1,52 @@
+{
+	"name": "Json1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "New Text Document.json",
+				"container": "container2json"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"order_id": {
+					"type": "integer"
+				},
+				"customer": {
+					"type": "object",
+					"properties": {
+						"name": {
+							"type": "string"
+						},
+						"email": {
+							"type": "string"
+						}
+					}
+				},
+				"items": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"product_id": {
+								"type": "string"
+							},
+							"quantity": {
+								"type": "integer"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

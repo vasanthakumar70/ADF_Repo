@@ -1,0 +1,29 @@
+{
+	"name": "OrcFormat",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Orc",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"folderPath": "orc",
+				"container": "container1"
+			},
+			"enablePhysicalSchema": true
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

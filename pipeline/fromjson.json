@@ -1,0 +1,113 @@
+{
+	"name": "fromjson",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['product_id']"
+								},
+								"sink": {
+									"name": "item1_product_id",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['quantity']"
+								},
+								"sink": {
+									"name": "item1_quantity",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['order_id']"
+								},
+								"sink": {
+									"name": "order_id",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['customer']['name']"
+								},
+								"sink": {
+									"name": "customer_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['customer']['email']"
+								},
+								"sink": {
+									"name": "customer_email",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['items']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Azure_sql",
+						"type": "DatasetReference",
+						"parameters": {
+							"TableName": "Orders",
+							"Schema": "dbo"
+						}
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "data format"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-12-25T10:24:24Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

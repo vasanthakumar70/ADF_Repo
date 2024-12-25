@@ -1,0 +1,14 @@
+{
+	"name": "vasanth03Datafactory",
+	"properties": {
+		"globalConfigurations": {
+			"PipelineBillingEnabled": "true"
+		}
+	},
+	"location": "centralus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "156ca533-2e15-42d9-8a2c-4d851b4373a7",
+		"tenantId": "818467cf-44b9-45a5-a41a-1ef924fcd795"
+	}
+}

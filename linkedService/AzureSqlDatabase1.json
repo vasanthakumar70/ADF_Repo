@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlDatabase1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "vasanth0103.database.windows.net",
+			"database": "vasanthdb",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "vasanth",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDUzREI5RjI2LTVFQ0ItNEI1Qy1BREUwLUJFREY0ODc5RUM4Q19mNDQ5ZTAyZS0xMmFiLTQ2YmYtYjY1ZC0xMDdlZWYzYzNiNzQiDQp9"
+		}
+	}
+}
