@@ -152,6 +152,105 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "sql_server",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "database",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "tablename",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "blob_folder",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "blob_folder_copy1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Parameterized",
+						"type": "DataFlowReference",
+						"parameters": {
+							"folder": {
+								"value": "'@{variables('blob_folder')}'",
+								"type": "Expression"
+							},
+							"Filename": {
+								"value": "'@{variables('blob_filename')}'",
+								"type": "Expression"
+							}
+						},
+						"datasetParameters": {
+							"sink1": {
+								"tablename": {
+									"value": "@variables('sql_table')",
+									"type": "Expression"
+								},
+								"servername": {
+									"value": "@variables('sql_server')",
+									"type": "Expression"
+								},
+								"database": {
+									"value": "@variables('sql_database')",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceParameters": {
+							"sink1": {
+								"schemaLinkedService": {
+									"tablename": {
+										"value": "@variables('sql_table')",
+										"type": "Expression"
+									},
+									"servername": {
+										"value": "@variables('sql_server')",
+										"type": "Expression"
+									},
+									"database": {
+										"value": "@variables('sql_database')",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
 			}
 		],
 		"variables": {

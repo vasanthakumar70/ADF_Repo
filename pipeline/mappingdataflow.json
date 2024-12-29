@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "dataflow1",
+						"referenceName": "TasK1",
 						"type": "DataFlowReference",
 						"datasetParameters": {
 							"CSVfromBlob": {
@@ -36,17 +36,6 @@
 								"filename": {
 									"value": "@concat('adls-container/personal_details_', formatDateTime(utcNow(), 'yyyyMMdd'), '.csv') ",
 									"type": "Expression"
-								}
-							}
-						},
-						"linkedServiceParameters": {
-							"sink1": {
-								"schemaLinkedService": {
-									"directory": "CSV",
-									"filename": {
-										"value": "@concat('adls-container/personal_details_', formatDateTime(utcNow(), 'yyyyMMdd'), '.csv') ",
-										"type": "Expression"
-									}
 								}
 							}
 						}
