@@ -1,0 +1,176 @@
+{
+	"name": "parameters",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "Config",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": true
+				}
+			},
+			{
+				"name": "sql_server",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "sql_server",
+					"value": {
+						"value": "@activity('Lookup1').output.firstRow.destination.serverName",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "database",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "sql_database",
+					"value": {
+						"value": "@activity('Lookup1').output.firstRow.destination.databaseName",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "tablename",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "sql_table",
+					"value": {
+						"value": "@activity('Lookup1').output.firstRow.destination.tableName",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "blob_folder",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "sql_table",
+					"value": {
+						"value": "@activity('Lookup1').output.firstRow.source.adlsPath",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "blob_folder_copy1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "sql_table",
+					"value": {
+						"value": "@activity('Lookup1').output.firstRow.source.fileName",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"sql_server": {
+				"type": "String"
+			},
+			"sql_database": {
+				"type": "String"
+			},
+			"sql_table": {
+				"type": "String"
+			},
+			"blob_folder": {
+				"type": "String"
+			},
+			"blob_filename": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
