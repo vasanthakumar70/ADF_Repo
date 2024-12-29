@@ -122,7 +122,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "sql_table",
+					"variableName": "blob_folder",
 					"value": {
 						"value": "@activity('Lookup1').output.firstRow.source.adlsPath",
 						"type": "Expression"
@@ -130,7 +130,7 @@
 				}
 			},
 			{
-				"name": "blob_folder_copy1",
+				"name": "filename",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -146,7 +146,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "sql_table",
+					"variableName": "blob_filename",
 					"value": {
 						"value": "@activity('Lookup1').output.firstRow.source.fileName",
 						"type": "Expression"
@@ -182,7 +182,7 @@
 						]
 					},
 					{
-						"activity": "blob_folder_copy1",
+						"activity": "filename",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -223,24 +223,6 @@
 								"database": {
 									"value": "@variables('sql_database')",
 									"type": "Expression"
-								}
-							}
-						},
-						"linkedServiceParameters": {
-							"sink1": {
-								"schemaLinkedService": {
-									"tablename": {
-										"value": "@variables('sql_table')",
-										"type": "Expression"
-									},
-									"servername": {
-										"value": "@variables('sql_server')",
-										"type": "Expression"
-									},
-									"database": {
-										"value": "@variables('sql_database')",
-										"type": "Expression"
-									}
 								}
 							}
 						}
