@@ -1,0 +1,60 @@
+{
+	"name": "Config",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "config.json",
+				"folderPath": "config",
+				"container": "container1"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"source": {
+					"type": "object",
+					"properties": {
+						"adlsPath": {
+							"type": "string"
+						},
+						"fileName": {
+							"type": "string"
+						}
+					}
+				},
+				"destination": {
+					"type": "object",
+					"properties": {
+						"serverName": {
+							"type": "string"
+						},
+						"databaseName": {
+							"type": "string"
+						},
+						"tableName": {
+							"type": "string"
+						}
+					}
+				},
+				"pipeline": {
+					"type": "object",
+					"properties": {
+						"batchSize": {
+							"type": "integer"
+						},
+						"copyBehavior": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	}
+}

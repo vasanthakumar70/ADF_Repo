@@ -1,0 +1,40 @@
+{
+	"name": "Parameter_SQL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ParameterizedAzureSQL",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"servername": {
+					"value": "@dataset().servername",
+					"type": "Expression"
+				},
+				"database": {
+					"value": "@dataset().database",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"tablename": {
+				"type": "string"
+			},
+			"servername": {
+				"type": "string"
+			},
+			"database": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().tablename",
+				"type": "Expression"
+			}
+		}
+	}
+}

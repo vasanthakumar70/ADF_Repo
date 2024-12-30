@@ -1,0 +1,31 @@
+{
+	"name": "AzureSqlDatabase",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"SERVER": {
+				"type": "string"
+			},
+			"DATABASE": {
+				"type": "string"
+			},
+			"USER": {
+				"type": "string"
+			},
+			"PASSWORD": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "@{linkedService().SERVER}",
+			"database": "@{linkedService().DATABASE}",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "@{linkedService().USER}",
+			"password": "@{linkedService().PASSWORD}"
+		}
+	}
+}
