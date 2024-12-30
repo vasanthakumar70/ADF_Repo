@@ -1,0 +1,84 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "vasanth03Datafactory"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"FileServer1_password": {
+			"value": ""
+		},
+		"ParameterizedAzureSQL_password": {
+			"value": ""
+		},
+		"SqlServer1_password": {
+			"value": ""
+		},
+		"SqlServer2_password": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://vasanthblob.dfs.core.windows.net/"
+		},
+		"AzureSqlDatabase_properties_typeProperties_server": {
+			"value": "@{linkedService().SERVER}"
+		},
+		"AzureSqlDatabase_properties_typeProperties_database": {
+			"value": "@{linkedService().DATABASE}"
+		},
+		"AzureSqlDatabase_properties_typeProperties_userName": {
+			"value": "@{linkedService().USER}"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "vasanth0103.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "vasanthdb"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "vasanth"
+		},
+		"FileServer1_properties_typeProperties_host": {
+			"value": "\\\\VASANTHAKUMAR\\Users\\vasan\\Desktop\\projects\\Foldersharing"
+		},
+		"FileServer1_properties_typeProperties_userId": {
+			"value": "VASANTHAKUMAR\\vasan"
+		},
+		"ParameterizedAzureSQL_properties_typeProperties_server": {
+			"value": "@{linkedService().servername}"
+		},
+		"ParameterizedAzureSQL_properties_typeProperties_database": {
+			"value": "@{linkedService().database}"
+		},
+		"ParameterizedAzureSQL_properties_typeProperties_userName": {
+			"value": "vasanth"
+		},
+		"SqlServer1_properties_typeProperties_server": {
+			"value": "Vasanthakumar"
+		},
+		"SqlServer1_properties_typeProperties_database": {
+			"value": "Training"
+		},
+		"SqlServer1_properties_typeProperties_userName": {
+			"value": "training234"
+		},
+		"SqlServer2_properties_typeProperties_server": {
+			"value": "Vasanthakumar"
+		},
+		"SqlServer2_properties_typeProperties_database": {
+			"value": "trainingdestinnation"
+		},
+		"SqlServer2_properties_typeProperties_userName": {
+			"value": "training234"
+		}
+	}
+}
