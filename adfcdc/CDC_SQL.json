@@ -1,5 +1,5 @@
 {
-	"name": "CDC1",
+	"name": "CDC_SQL",
 	"properties": {
 		"SourceConnectionsInfo": [
 			{
@@ -156,7 +156,7 @@
 			},
 			"mode": "Microbatch"
 		},
-		"status": "Starting",
+		"status": "Stopped",
 		"allowVNetOverride": false
 	}
 }
