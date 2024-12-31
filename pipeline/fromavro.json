@@ -13,7 +13,16 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "container1/avro/@{'ordersdata.avro'}"
+					},
+					{
+						"name": "Destination",
+						"value": "container1/parquet/@{'parquetfile'}"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "AvroSource",
