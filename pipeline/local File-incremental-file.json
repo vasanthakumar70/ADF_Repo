@@ -1,5 +1,5 @@
 {
-	"name": "incremental-file",
+	"name": "local File-incremental-file",
 	"properties": {
 		"activities": [
 			{
