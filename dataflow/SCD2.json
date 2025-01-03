@@ -156,12 +156,14 @@
 				"     deletable: false,",
 				"     upsertable: false,",
 				"     keys:['sur_key'],",
+				"     skipKeyWrites:true,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
 				"          flag = new_flag,",
-				"          active_int = new_active_int",
+				"          active_int = new_active_int,",
+				"          sur_key",
 				"     )) ~> sink2"
 			]
 		}
