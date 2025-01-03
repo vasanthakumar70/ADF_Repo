@@ -1,0 +1,75 @@
+{
+	"name": "SCD2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "AzureSqlDatabase1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "stage"
+				},
+				{
+					"linkedService": {
+						"referenceName": "AzureSqlDatabase1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "Dim"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "join1"
+				},
+				{
+					"name": "split1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          employee_id as integer,",
+				"          first_name as string,",
+				"          last_name as string,",
+				"          email as string,",
+				"          hire_date as date,",
+				"          department as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'sqlserver',",
+				"     schemaName: 'dbo',",
+				"     tableName: 'stage_employee',",
+				"     isolationLevel: 'READ_UNCOMMITTED') ~> stage",
+				"source(output(",
+				"          sur_key as integer,",
+				"          employee_id as integer,",
+				"          first_name as string,",
+				"          last_name as string,",
+				"          email as string,",
+				"          hire_date as date,",
+				"          department as string,",
+				"          active_int as boolean,",
+				"          flag as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'query',",
+				"     store: 'sqlserver',",
+				"     query: 'select * from dim_employee_scd2',",
+				"     isolationLevel: 'READ_UNCOMMITTED') ~> Dim",
+				"stage, Dim join(stage@employee_id == Dim@employee_id,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 split(ERROR_FUNCTION(''),",
+				"     ERROR_FUNCTION(''),",
+				"     disjoint: false) ~> split1@(, old)"
+			]
+		}
+	}
+}
