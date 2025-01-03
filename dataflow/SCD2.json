@@ -19,7 +19,15 @@
 					"name": "Dim"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "AzureSqlDatabase1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "join1"
@@ -66,9 +74,22 @@
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> join1",
-				"join1 split(ERROR_FUNCTION(''),",
-				"     ERROR_FUNCTION(''),",
-				"     disjoint: false) ~> split1@(, old)"
+				"join1 split(notEquals(stage@department, Dim@department) && notEquals(isNull(Dim@department),true()),",
+				"     equals(isNull(Dim@employee_id),true()),",
+				"     disjoint: true) ~> split1@(modified, new)",
+				"split1@new sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'sqlserver',",
+				"     schemaName: 'dbo',",
+				"     tableName: 'dim_employee_scd2',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
 			]
 		}
 	}
