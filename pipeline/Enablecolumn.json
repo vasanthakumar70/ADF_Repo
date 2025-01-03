@@ -1,5 +1,5 @@
 {
-	"name": "task1",
+	"name": "Enablecolumn",
 	"properties": {
 		"activities": [
 			{
@@ -134,6 +134,9 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "Task-10,11"
+		},
 		"annotations": [],
 		"lastPublishTime": "2024-12-23T10:01:27Z"
 	},

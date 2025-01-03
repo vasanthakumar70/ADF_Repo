@@ -13,7 +13,16 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "container1//employee_data.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.@{'EmployeeData'}"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
@@ -133,6 +142,9 @@
 				]
 			}
 		],
+		"folder": {
+			"name": "Task-1,4"
+		},
 		"annotations": [],
 		"lastPublishTime": "2024-12-25T10:24:24Z"
 	},

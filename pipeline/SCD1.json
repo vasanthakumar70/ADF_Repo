@@ -1,5 +1,5 @@
 {
-	"name": "OrcToAvro",
+	"name": "SCD1",
 	"properties": {
 		"activities": [
 			{
@@ -16,21 +16,20 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "OrcSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						}
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
 					},
 					"sink": {
-						"type": "AvroSink",
-						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
+						"type": "SqlServerSink",
+						"writeBehavior": "upsert",
+						"upsertSettings": {
+							"useTempDB": true,
+							"keys": [
+								"employee_id"
+							]
 						},
-						"formatSettings": {
-							"type": "AvroWriteSettings"
-						}
+						"sqlWriterUseTableLock": false
 					},
 					"enableStaging": false,
 					"translator": {
@@ -44,29 +43,27 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "OrcFormat",
+						"referenceName": "Onprimesed",
 						"type": "DatasetReference",
 						"parameters": {
-							"filename": "ordersdata"
+							"table": "stage_employee"
 						}
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "Avro1",
+						"referenceName": "Onprimesed",
 						"type": "DatasetReference",
 						"parameters": {
-							"filename": "avro"
+							"table": "dim_employee_scd1"
 						}
 					}
 				]
 			}
 		],
 		"folder": {
-			"name": "Task-2"
+			"name": "SCD"
 		},
-		"annotations": [],
-		"lastPublishTime": "2024-12-20T06:00:20Z"
-	},
-	"type": "Microsoft.DataFactory/factories/pipelines"
+		"annotations": []
+	}
 }

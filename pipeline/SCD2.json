@@ -1,5 +1,5 @@
 {
-	"name": "Dataflow_Task2",
+	"name": "SCD2",
 	"properties": {
 		"activities": [
 			{
@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "Task2",
+						"referenceName": "SCD2",
 						"type": "DataFlowReference"
 					},
 					"compute": {
@@ -28,7 +28,7 @@
 			}
 		],
 		"folder": {
-			"name": "Task-12,13"
+			"name": "SCD"
 		},
 		"annotations": []
 	}
