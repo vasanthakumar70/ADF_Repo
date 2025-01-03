@@ -141,6 +141,7 @@
 				"     deletable: false,",
 				"     upsertable: true,",
 				"     keys:['sur_key'],",
+				"     skipKeyWrites:true,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError',",
