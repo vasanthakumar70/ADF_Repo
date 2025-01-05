@@ -53,9 +53,6 @@
 				},
 				{
 					"name": "alterRow1"
-				},
-				{
-					"name": "derivedColumn3"
 				}
 			],
 			"scriptLines": [
@@ -89,15 +86,15 @@
 				"     validateSchema: false,",
 				"     format: 'query',",
 				"     store: 'sqlserver',",
-				"     query: 'select * from dim_employee_scd2',",
+				"     query: 'select * from dim_employee_scd2\\nwhere active_int=1',",
 				"     isolationLevel: 'READ_UNCOMMITTED') ~> Dim",
 				"stage, Dim join(stage@employee_id == Dim@employee_id,",
 				"     joinType:'left',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> join1",
-				"derivedColumn3 split(flag ==1 && isNull(d_department) ==false(),",
-				"     flag==1,",
+				"select1 split(equals(isNull(d_employee_id),false())  && (notEquals(isNull(d_department), true()) && notEquals(d_department, s_department)),",
+				"     isNull(d_employee_id)  || (notEquals(isNull(d_department), true()) && notEquals(d_department, s_department)),",
 				"     disjoint: true) ~> split1@(modified, new)",
 				"join1 select(mapColumn(",
 				"          s_employee_id = stage@employee_id,",
@@ -122,7 +119,6 @@
 				"split1@modified derive(new_flag = 'old',",
 				"          new_active_int = false()) ~> derivedColumn2",
 				"derivedColumn2 alterRow(updateIf(true())) ~> alterRow1",
-				"select1 derive(flag = iif(s_department!=d_department || isNull(d_department),1, 0)) ~> derivedColumn3",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
