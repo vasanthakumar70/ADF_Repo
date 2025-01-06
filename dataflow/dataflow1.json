@@ -1,0 +1,70 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "AzureSqlDatabase1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "stage"
+				},
+				{
+					"linkedService": {
+						"referenceName": "AzureSqlDatabase1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "dim"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "joinedRecords"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          employee_id as integer,",
+				"          first_name as string,",
+				"          last_name as string,",
+				"          email as string,",
+				"          hire_date as date,",
+				"          department as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'sqlserver',",
+				"     schemaName: 'dbo',",
+				"     tableName: 'stage_employee',",
+				"     isolationLevel: 'READ_UNCOMMITTED') ~> stage",
+				"source(output(",
+				"          sur_key as integer,",
+				"          employee_id as integer,",
+				"          first_name as string,",
+				"          last_name as string,",
+				"          email as string,",
+				"          hire_date as date,",
+				"          department as string,",
+				"          valid_from as date,",
+				"          valid_to as date,",
+				"          active_int as boolean",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'query',",
+				"     store: 'sqlserver',",
+				"     query: 'select * from dim_employee_scd2\\nwhere active_int=1',",
+				"     isolationLevel: 'READ_UNCOMMITTED') ~> dim",
+				"stage, dim join(stage@employee_id == dim@employee_id,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> joinedRecords"
+			]
+		}
+	}
+}
