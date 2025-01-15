@@ -46,7 +46,7 @@
 						"referenceName": "Onprimesed",
 						"type": "DatasetReference",
 						"parameters": {
-							"table": "stage_employee"
+							"tablename": "stage_employee"
 						}
 					}
 				],
@@ -55,7 +55,7 @@
 						"referenceName": "Onprimesed",
 						"type": "DatasetReference",
 						"parameters": {
-							"table": "dim_employee_scd1"
+							"tablename": "dim_employee_scd1"
 						}
 					}
 				]

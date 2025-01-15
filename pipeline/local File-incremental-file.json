@@ -175,7 +175,7 @@
 												"referenceName": "Parquet1",
 												"type": "DatasetReference",
 												"parameters": {
-													"name": {
+													"filename": {
 														"value": "@concat('file load/',activity('each file').output.itemName)",
 														"type": "Expression"
 													}
@@ -212,7 +212,7 @@
 						"referenceName": "Onprimesed",
 						"type": "DatasetReference",
 						"parameters": {
-							"table": "waterwarktable"
+							"tablename": "waterwarktable"
 						}
 					}
 				}

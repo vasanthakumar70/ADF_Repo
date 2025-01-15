@@ -25,7 +25,7 @@
 						"referenceName": "Onprimesed",
 						"type": "DatasetReference",
 						"parameters": {
-							"table": "watermarktable"
+							"tablename": "watermarktable"
 						}
 					},
 					"firstRowOnly": true
@@ -91,7 +91,7 @@
 						"referenceName": "Onprimesed",
 						"type": "DatasetReference",
 						"parameters": {
-							"table": "orders"
+							"tablename": "orders"
 						}
 					}
 				],
@@ -100,7 +100,7 @@
 						"referenceName": "Parquet1",
 						"type": "DatasetReference",
 						"parameters": {
-							"name": {
+							"filename": {
 								"value": "@concat('Increment load-',formatDateTime(utcNow(),'yyyy-MM-dd_HHmmss'))",
 								"type": "Expression"
 							}
@@ -131,7 +131,7 @@
 						"referenceName": "Onprimesed",
 						"type": "DatasetReference",
 						"parameters": {
-							"table": "current"
+							"tablename": "current"
 						}
 					},
 					"firstRowOnly": true

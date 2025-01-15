@@ -25,7 +25,7 @@
 						"referenceName": "Onprimesed",
 						"type": "DatasetReference",
 						"parameters": {
-							"table": "Listoftables"
+							"tablename": "Listoftables"
 						}
 					},
 					"firstRowOnly": false
@@ -152,7 +152,7 @@
 									"referenceName": "Onprimesed",
 									"type": "DatasetReference",
 									"parameters": {
-										"table": {
+										"tablename": {
 											"value": "@item().Tablename",
 											"type": "Expression"
 										}
@@ -164,7 +164,7 @@
 									"referenceName": "Parquet1",
 									"type": "DatasetReference",
 									"parameters": {
-										"name": {
+										"filename": {
 											"value": "@concat(item().TableName,'/Increment load-',formatDateTime(utcNow(),'yyyy-MM-dd_HHmmss'))",
 											"type": "Expression"
 										}
@@ -195,7 +195,7 @@
 									"referenceName": "Onprimesed",
 									"type": "DatasetReference",
 									"parameters": {
-										"table": "current"
+										"tablename": "current"
 									}
 								},
 								"firstRowOnly": true
@@ -227,7 +227,7 @@
 									"referenceName": "Onprimesed",
 									"type": "DatasetReference",
 									"parameters": {
-										"table": "watermarktable"
+										"tablename": "watermarktable"
 									}
 								},
 								"firstRowOnly": true

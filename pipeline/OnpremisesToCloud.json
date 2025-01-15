@@ -353,7 +353,7 @@
 						"referenceName": "Onprimesed",
 						"type": "DatasetReference",
 						"parameters": {
-							"table": "Production.Product"
+							"tablename": "Production.Product"
 						}
 					}
 				],
@@ -362,7 +362,7 @@
 						"referenceName": "Parquet1",
 						"type": "DatasetReference",
 						"parameters": {
-							"name": "product"
+							"filename": "product"
 						}
 					}
 				]

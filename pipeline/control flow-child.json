@@ -163,7 +163,7 @@
 						"referenceName": "Onprimesed",
 						"type": "DatasetReference",
 						"parameters": {
-							"table": "LargeFileData"
+							"tablename": "LargeFileData"
 						}
 					}
 				]

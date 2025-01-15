@@ -65,7 +65,7 @@
 						"referenceName": "Parquet1",
 						"type": "DatasetReference",
 						"parameters": {
-							"name": "parquetfile"
+							"filename": "parquetfile"
 						}
 					}
 				]

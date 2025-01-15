@@ -24,7 +24,7 @@
 						"referenceName": "Onprimesed",
 						"type": "DatasetReference",
 						"parameters": {
-							"table": "Config"
+							"tablename": "Config"
 						}
 					},
 					"firstRowOnly": false
@@ -110,7 +110,7 @@
 									"referenceName": "Onprimesed",
 									"type": "DatasetReference",
 									"parameters": {
-										"table": {
+										"tablename": {
 											"value": "@item().Name",
 											"type": "Expression"
 										}
