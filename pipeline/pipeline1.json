@@ -144,7 +144,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "select \n    * \nfrom \n    @{item().TableName}\nwhere \n    @{item().watermarkcolumn} between '@{activity('LastWatermark').output.firstRow.WatermarkValue}' and '@{activity('NewwaterMark').output.firstRow.NewWaterMarkValue}'",
+										"value": "select \n    * \nfrom \n    @{item().TableName}\nwhere \n    @{item().watermarkcolumn}>'@{activity('LastWatermark').output.firstRow.WatermarkValue}' and @{item().watermarkcolumn}<='@{activity('NewwaterMark').output.firstRow.NewWaterMarkValue}'",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
